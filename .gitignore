@@ -1,0 +1,27 @@
+# ---- İşletim sistemi ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ---- Editör / IDE ----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+
+# ---- Geçici / log ----
+*.log
+*.tmp
+*.bak
+node_modules/
+
+# ---- Yerel notlar (yayınlanmasın) ----
+scratchpad/
+notlar.md
