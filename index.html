@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#041c33">
+<title>Defne Derin Durmuş · 1 Yaşında</title>
+<meta name="description" content="Defne Derin Durmuş'un 1. yaş doğum günü davetiyesi">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,WONK,wght@9..144,0..100,0..1,100..900&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DÜZENLENECEK BİLGİLER: kart metni HTML içinde (Sahne B) ve
+   noktalı alanlar telefonda parmakla düzenlenebilir.
+   ============================================================ */
+
+:root{
+  /* ---- Sahne A (istiridye) paleti ---- */
+  --abis:#041c33;
+  --derin:#0a3d5c;
+  --su:#10708a;
+  --turkuaz:#2fd3c4;
+  --sedef:#fdf3ef;
+  --mercan:#ff8e78;
+  --altin:#ffd28a;
+
+  --display:"Fraunces","Georgia",serif;
+  --govde:"Quicksand","Trebuchet MS",sans-serif;
+
+  /* ---- Sahne B (davetiye kartı) paleti ---- */
+  --abyss:#03131f; --deep:#04283d; --lagoon:#0a6a72;
+  --pearl:#f6ead8; --aqua:#8ee9e2; --orchid:#b79ff0;
+  --ink:#eafbff;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+/* aşağı/yukarı çekince (overscroll) tek renk kalsın — dikiş oluşmasın */
+html{background:#04222f}
+
+body{
+  font-family:var(--govde);
+  color:var(--sedef);
+  min-height:100dvh;
+  background-color:#04222f;
+  background-image:
+    radial-gradient(1100px 620px at 72% -12%, rgba(120,230,230,.14), transparent 60%),
+    radial-gradient(900px 520px at 8% 112%, rgba(120,110,220,.12), transparent 62%),
+    linear-gradient(180deg,#03131f 0%,#042635 42%,#04303f 100%);
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============================================================
+   SAHNE GEÇİŞİ
+   ============================================================ */
+/* Sahne A, geçiş sırasında B'nin üstünü örter; yavaşça sönümlenir */
+#sceneA{position:fixed;inset:0;z-index:40;transition:opacity 1.2s ease}
+#sceneA.gizle{opacity:0;pointer-events:none}
+
+#sceneB{
+  display:none;opacity:0;transition:opacity 1.1s ease;
+  min-height:100dvh;flex-direction:column;
+  position:relative;z-index:2;
+}
+#sceneB.goster{display:flex;opacity:1}
+
+/* Kartın yumuşak yükseliş girişi */
+#sceneB .card-wrap{
+  opacity:0;transform:translateY(38px) scale(.955);
+  transition:opacity 1.1s ease, transform 1.2s cubic-bezier(.2,.8,.25,1);
+}
+#sceneB.goster .card-wrap{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  #sceneB .card-wrap{transition:opacity .3s ease;transform:none}
+}
+
+/* ============================================================
+   SAHNE A — İSTİRİDYE / OKYANUS  (1. dosyadan)
+   ============================================================ */
+.kat{position:fixed;inset:0;pointer-events:none;will-change:transform}
+
+.deniz{
+  position:fixed;inset:0;z-index:0;
+  background:radial-gradient(120% 70% at 50% -10%, #1a8fa8 0%, #0d5f7f 32%, #073c5c 60%, #041c33 100%);
+}
+.deniz::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(90% 55% at 50% 0%, rgba(47,211,196,.14), transparent 70%);
+  animation:derinNefes 11s ease-in-out infinite alternate;
+}
+@keyframes derinNefes{from{opacity:.35}to{opacity:.9}}
+
+.isik{
+  position:absolute;inset:-30% -20% auto -20%;height:130%;
+  background:repeating-linear-gradient(100deg,
+    rgba(255,255,255,0) 0px, rgba(255,255,255,.055) 14px,
+    rgba(255,255,255,0) 46px, rgba(255,255,255,0) 92px);
+  filter:blur(6px);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 55%, transparent 88%);
+  mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 55%, transparent 88%);
+  animation:isilda 14s ease-in-out infinite alternate;
+}
+@keyframes isilda{
+  from{transform:translateX(-4%) skewX(-2deg);opacity:.75}
+  to{transform:translateX(4%) skewX(2deg);opacity:1}
+}
+.isik2{
+  position:absolute;inset:-30% -20% auto -20%;height:120%;
+  background:repeating-linear-gradient(80deg,
+    rgba(255,255,255,0) 0px, rgba(190,235,245,.04) 18px,
+    rgba(255,255,255,0) 60px, rgba(255,255,255,0) 120px);
+  filter:blur(9px);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.3) 50%, transparent 82%);
+  mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.3) 50%, transparent 82%);
+  animation:isilda 19s ease-in-out infinite alternate-reverse;
+}
+
+.plankton{
+  position:fixed;z-index:1;border-radius:50%;
+  background:rgba(214,246,255,.55);pointer-events:none;
+  animation:plansur var(--sure,12s) ease-in-out infinite;
+  animation-delay:var(--gec,0s);
+}
+@keyframes plansur{
+  0%{transform:translate(0,0);opacity:.18}
+  25%{transform:translate(10px,-14px);opacity:.5}
+  50%{transform:translate(-7px,-26px);opacity:.3}
+  75%{transform:translate(-13px,-10px);opacity:.55}
+  100%{transform:translate(0,0);opacity:.18}
+}
+
+.balik{position:fixed;z-index:1;color:rgba(190,235,245,.3);pointer-events:none;will-change:transform}
+.balik svg{width:100%;height:auto;display:block}
+.balik .yuzgec{transform-box:fill-box;transform-origin:left center;animation:yuzgecCirp 1s ease-in-out infinite alternate}
+@keyframes yuzgecCirp{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+
+.denizanasi{
+  position:fixed;bottom:-32vh;z-index:1;width:var(--b,72px);
+  color:rgba(190,230,245,.22);pointer-events:none;
+  animation:deniYuksel var(--sure,46s) linear infinite;
+  animation-delay:var(--gec,0s);will-change:transform;
+}
+.denizanasi.da1{left:9%;--sure:48s;--b:62px}
+.denizanasi.da2{left:79%;--sure:60s;--gec:-24s;--b:90px;color:rgba(210,200,250,.18)}
+@keyframes deniYuksel{
+  0%{transform:translateY(0);opacity:0}
+  7%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-165vh);opacity:0}
+}
+.salinim{animation:deniSalin 6s ease-in-out infinite alternate}
+@keyframes deniSalin{from{transform:translateX(-22px) rotate(-4deg)}to{transform:translateX(22px) rotate(4deg)}}
+.denizanasi svg{width:100%;height:auto;display:block;overflow:visible}
+.dokunac{transform-box:fill-box;transform-origin:top center;animation:dokunacSalin 3.4s ease-in-out infinite alternate}
+.dokunac:nth-of-type(2){animation-delay:-.8s}
+.dokunac:nth-of-type(3){animation-delay:-1.6s}
+.dokunac:nth-of-type(4){animation-delay:-2.4s}
+@keyframes dokunacSalin{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+
+.yuzucu{
+  position:absolute;top:14%;left:-30vw;width:min(320px,46vw);
+  color:rgba(214,246,255,.34);animation:yuz 34s linear infinite;will-change:transform;
+}
+.yuzucu svg{width:100%;height:auto;display:block}
+.kuyruk{transform-origin:78% 52%;animation:cirp 2.4s ease-in-out infinite}
+@keyframes cirp{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+.sac{stroke-dasharray:6 10;animation:sacAk 2.6s linear infinite;opacity:.8}
+@keyframes sacAk{to{stroke-dashoffset:-32}}
+@keyframes yuz{
+  0%{transform:translate(0,0) rotate(2deg)}
+  25%{transform:translate(38vw,-4vh) rotate(-2deg)}
+  50%{transform:translate(75vw,-6vh) rotate(1.5deg)}
+  75%{transform:translate(112vw,-2vh) rotate(-1.5deg)}
+  100%{transform:translate(150vw,2vh) rotate(2deg)}
+}
+
+.zemin{position:absolute;left:0;right:0;bottom:0;height:26vh;color:#062a44}
+.zemin svg{width:100%;height:100%;display:block;overflow:visible}
+.yosun{transform-origin:50% 100%;transform-box:fill-box;animation:salin 7s ease-in-out infinite alternate}
+.yosun:nth-child(2){animation-duration:9s;animation-delay:-2s}
+.yosun:nth-child(3){animation-duration:6s;animation-delay:-4s}
+.yosun:nth-child(4){animation-duration:11s;animation-delay:-1s}
+@keyframes salin{from{transform:rotate(-4deg) scaleY(.98)}to{transform:rotate(4deg) scaleY(1.02)}}
+.mercanDal{transform-origin:50% 100%;transform-box:fill-box;animation:salin 13s ease-in-out infinite alternate}
+.mercanDal.m2{animation-duration:16s;animation-delay:-5s}
+.denizyildizi{transform-box:fill-box;transform-origin:center;animation:yildizKipir 9s ease-in-out infinite alternate}
+@keyframes yildizKipir{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+
+.yengec{
+  position:fixed;bottom:6px;left:0;z-index:2;width:62px;color:#0e4a6e;
+  pointer-events:none;animation:gezin 56s linear infinite;will-change:transform;
+}
+.yengec svg{width:100%;height:auto;display:block;overflow:visible}
+.yengecGovde{animation:zipla .55s ease-in-out infinite alternate}
+@keyframes zipla{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+.bacak{transform-box:fill-box;transform-origin:top center;animation:bacakOyna .38s ease-in-out infinite alternate}
+.bacak:nth-of-type(2){animation-delay:-.12s}
+.bacak:nth-of-type(3){animation-delay:-.24s}
+@keyframes bacakOyna{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
+@keyframes gezin{
+  0%{transform:translateX(-14vw) scaleX(1)}
+  46%{transform:translateX(104vw) scaleX(1)}
+  50%{transform:translateX(104vw) scaleX(-1)}
+  96%{transform:translateX(-14vw) scaleX(-1)}
+  100%{transform:translateX(-14vw) scaleX(1)}
+}
+
+.kabarcik{
+  position:fixed;bottom:-8vh;z-index:2;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.9), rgba(255,255,255,.14) 42%, rgba(255,255,255,.05) 70%);
+  border:1px solid rgba(255,255,255,.28);
+  animation:yuksel var(--sure,10s) linear forwards;
+}
+.kabarcik.titrek{animation:yuksel var(--sure,10s) linear forwards, kabarTitre 1.4s ease-in-out infinite}
+@keyframes kabarTitre{
+  0%,100%{border-radius:50% 50% 48% 52%/52% 48% 50% 50%}
+  50%{border-radius:47% 53% 52% 48%/49% 51% 46% 54%}
+}
+.kabarcik.incik{
+  background:radial-gradient(circle at 34% 30%, #ffffff, #fdf3ef 45%, #ffd7e8 75%, #b9e8e2 100%);
+  border:0;box-shadow:0 0 12px rgba(255,255,255,.5);
+}
+@keyframes yuksel{
+  0%{transform:translate(0,0) scale(.6);opacity:0}
+  12%{opacity:.85}
+  100%{transform:translate(var(--kay,20px),-112vh) scale(1);opacity:0}
+}
+
+.kivilcim{
+  position:fixed;z-index:4;pointer-events:none;background:currentColor;
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
+  filter:drop-shadow(0 0 6px currentColor);will-change:transform,opacity;
+}
+.halka{
+  position:fixed;z-index:4;width:26px;height:26px;margin:-13px 0 0 -13px;
+  border:2px solid rgba(253,243,239,.6);border-radius:50%;pointer-events:none;
+  animation:halkaGenisle .95s ease-out forwards;
+}
+@keyframes halkaGenisle{from{transform:scale(.4);opacity:.9}to{transform:scale(6.5);opacity:0}}
+
+.sahne{
+  position:relative;z-index:3;min-height:100svh;
+  display:grid;place-items:center;padding:clamp(20px,5vw,56px);
+}
+
+.kapak{
+  display:grid;place-items:center;gap:clamp(18px,3vw,30px);text-align:center;
+  transition:opacity .8s ease, transform .8s ease;
+}
+.kapak.gizle{opacity:0;transform:scale(.86) translateY(-24px);pointer-events:none}
+
+.fisilti{
+  font-size:clamp(11px,2.6vw,13px);letter-spacing:.42em;text-transform:uppercase;
+  color:rgba(253,243,239,.62);animation:nefes 4s ease-in-out infinite;
+}
+@keyframes nefes{0%,100%{opacity:.55}50%{opacity:1}}
+
+.istiridye{
+  position:relative;width:min(340px,74vw);aspect-ratio:1/.92;
+  background:none;border:0;padding:0;cursor:pointer;color:inherit;
+  filter:drop-shadow(0 24px 46px rgba(0,0,0,.45));
+}
+.istiridye:focus-visible{outline:3px solid var(--turkuaz);outline-offset:14px;border-radius:24px}
+.istiridye::before{
+  content:"";position:absolute;inset:16% 6% 4%;border-radius:50%;
+  animation:davetHalo 2.7s ease-out infinite;pointer-events:none;
+}
+@keyframes davetHalo{
+  0%{box-shadow:0 0 0 0 rgba(47,211,196,.4)}
+  75%{box-shadow:0 0 0 30px rgba(47,211,196,0)}
+  100%{box-shadow:0 0 0 0 rgba(47,211,196,0)}
+}
+.istiridye.acik::before{animation:none;box-shadow:none}
+.istiridye::after{
+  content:"";position:absolute;left:8%;right:8%;bottom:-5%;height:12%;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,.4), transparent 70%);z-index:-1;
+}
+.istiridye svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+@media (hover:hover){
+  .istiridye:not(.acik):hover svg{animation:kabukSallan .9s ease-in-out infinite}
+}
+@keyframes kabukSallan{
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(-1.8deg)}
+  75%{transform:rotate(1.8deg)}
+}
+.ust-kabuk{transform-origin:50% 78%;transition:transform 1.5s cubic-bezier(.2,1.35,.3,1)}
+.acik .ust-kabuk{transform:rotate(-64deg) translateY(-6px)}
+.alt-kabuk{transform-origin:50% 78%;transition:transform 1.5s cubic-bezier(.2,1.35,.3,1)}
+.acik .alt-kabuk{transform:rotate(5deg)}
+.inci{
+  transition:transform 1.5s cubic-bezier(.3,.9,.2,1), opacity .7s ease .9s, filter .9s ease;
+  animation:incisolu 3.4s ease-in-out infinite;
+}
+.acik .inci{transform:translateY(-190px) scale(1.55);opacity:0;animation:none;filter:drop-shadow(0 0 22px rgba(255,255,255,.9))}
+@keyframes incisolu{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.dokun{
+  font-family:var(--display);font-variation-settings:"SOFT" 70,"WONK" 1,"opsz" 90;
+  font-size:clamp(19px,4.4vw,26px);font-weight:500;color:var(--sedef);
+}
+.dokun small{
+  display:block;font-family:var(--govde);font-size:13px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--turkuaz);margin-top:10px;font-weight:600;
+}
+
+/* ============================================================
+   SAHNE B — DAVETİYE KARTI  (2. dosyadan)
+   ============================================================ */
+.scene{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.rays{
+  position:absolute;inset:-22%;
+  background:
+    linear-gradient(104deg, transparent 40%, rgba(190,255,246,.11) 46%, transparent 52%),
+    linear-gradient(78deg, transparent 55%, rgba(160,240,255,.09) 61%, transparent 68%),
+    linear-gradient(96deg, transparent 20%, rgba(255,240,214,.05) 25%, transparent 31%);
+  mix-blend-mode:screen;animation:raysDrift 12s ease-in-out infinite alternate;
+}
+@keyframes raysDrift{from{transform:translateX(-2.5%);opacity:.75}to{transform:translateX(2.5%);opacity:1}}
+
+.glowspot{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+.glowspot.a{width:340px;height:340px;left:-90px;top:22%;background:rgba(142,233,226,.22);animation:breathe 9s ease-in-out infinite alternate}
+.glowspot.b{width:420px;height:420px;right:-130px;bottom:8%;background:rgba(183,159,240,.20);animation:breathe 11s ease-in-out -3s infinite alternate}
+@keyframes breathe{from{transform:scale(.9)}to{transform:scale(1.12)}}
+
+.fish{position:absolute;width:64px;opacity:.55}
+.fish svg{display:block;width:100%;height:auto}
+.fish .bob{animation:bob 3.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(-6px)}50%{transform:translateY(6px)}}
+.fish.f1{top:16%;color:#7fd4dd;animation:swimL 26s linear -4s infinite}
+.fish.f2{top:64%;width:46px;color:#9aa9e8;filter:blur(1px);opacity:.4;animation:swimL 34s linear -18s infinite}
+.fish.f3{top:36%;width:52px;color:#e8c98a;transform:scaleX(-1);animation:swimR 30s linear -10s infinite}
+.fish.f4{top:80%;width:38px;color:#8ee9e2;filter:blur(1.5px);opacity:.35;transform:scaleX(-1);animation:swimR 40s linear -26s infinite}
+@keyframes swimL{from{left:104vw}to{left:-14vw}}
+@keyframes swimR{from{left:-14vw}to{left:104vw}}
+
+.jelly{position:absolute;width:74px;opacity:.75;animation:jellyFloat 9s ease-in-out infinite}
+.jelly.j1{left:7%;top:58%}
+.jelly.j2{right:6%;top:14%;width:56px;opacity:.55;animation-delay:-4s;animation-duration:11s}
+@keyframes jellyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-26px)}}
+.jelly .tent{animation:tentSway 3.6s ease-in-out infinite;transform-origin:top center}
+@keyframes tentSway{0%,100%{transform:skewX(-5deg)}50%{transform:skewX(5deg)}}
+
+#bubbles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.bubble{
+  position:absolute;bottom:-40px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.18) 42%, rgba(255,255,255,.05) 62%);
+  box-shadow:inset 0 0 6px rgba(255,255,255,.5), 0 0 12px rgba(160,240,255,.25);
+  animation:rise linear forwards;
+}
+@keyframes rise{
+  0%{transform:translate(0,0);opacity:0}
+  8%{opacity:.9}
+  100%{transform:translate(var(--drift,0px),-112vh);opacity:0}
+}
+.burst{
+  position:fixed;border-radius:50%;pointer-events:none;z-index:5;
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.2) 45%, rgba(255,255,255,.05) 62%);
+  box-shadow:inset 0 0 5px rgba(255,255,255,.55), 0 0 10px rgba(160,240,255,.35);
+}
+
+#sceneB main{position:relative;z-index:2;flex:1;display:grid;place-items:center;padding:clamp(20px,4vw,44px) 16px}
+.card-wrap{will-change:transform}
+.card{
+  position:relative;max-width:600px;width:min(92vw,600px);
+  padding:clamp(28px,6vw,54px) clamp(20px,5.5vw,50px) clamp(24px,5vw,40px);
+  text-align:center;border-radius:30px;
+  background:linear-gradient(165deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+  border:1px solid rgba(190,240,255,.28);
+  box-shadow:0 30px 80px rgba(0,10,20,.55), inset 0 0 70px rgba(120,220,230,.06);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  animation:cardFloat 7s ease-in-out infinite;
+}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.card::before,.card::after{
+  content:"";position:absolute;width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 32% 32%, #fff, #d9c9a8 70%);
+  box-shadow:0 0 10px rgba(246,234,216,.8);
+}
+.card::before{top:16px;left:16px}
+.card::after{top:16px;right:16px}
+
+.eyebrow{font-size:clamp(.66rem,2vw,.78rem);letter-spacing:.42em;text-transform:uppercase;color:var(--aqua);opacity:.9;margin-bottom:16px}
+
+.tail{width:clamp(110px,26vw,150px);margin:0 auto 6px;display:block}
+.tail .drop{animation:dropUp 2.6s ease-in-out infinite}
+.tail .drop.d2{animation-delay:.7s}
+.tail .drop.d3{animation-delay:1.4s}
+@keyframes dropUp{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-30px);opacity:0}}
+.tail .fluke{animation:flukeSway 5s ease-in-out infinite;transform-origin:90px 150px}
+@keyframes flukeSway{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
+
+.kicker{font-size:clamp(1rem,3vw,1.2rem);font-weight:500;color:#cdeef2;letter-spacing:.06em}
+.name{
+  font-family:'Dancing Script',cursive;font-weight:700;
+  font-size:clamp(3rem,11.5vw,5.4rem);line-height:1.04;margin:4px 0 2px;
+  background:linear-gradient(92deg,#ffe9c9,#ffffff 30%,#bff3ec 62%,#e3ccff);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 16px rgba(140,240,230,.28));
+  animation:shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+.surname{font-size:clamp(.8rem,2.6vw,1rem);letter-spacing:.5em;text-transform:uppercase;color:#bfe6ec;padding-left:.5em}
+
+.age{margin:14px 0 4px}
+.one{
+  display:inline-block;font-weight:700;line-height:.9;font-size:clamp(5.4rem,19vw,8.6rem);
+  background:linear-gradient(180deg,#fff8e9,#f0d9ac 45%,#8ee9e2);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 18px rgba(232,201,138,.3));position:relative;
+}
+.one .spark{position:absolute;font-size:clamp(1rem,3.4vw,1.4rem);color:#fff;animation:twinkle 2.2s ease-in-out infinite}
+.one .spark.s1{top:-4px;right:-22px}
+.one .spark.s2{bottom:10px;left:-26px;animation-delay:1.1s}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(20deg)}}
+.age-label{display:block;font-size:clamp(.8rem,2.6vw,1rem);letter-spacing:.55em;text-transform:uppercase;color:var(--pearl);padding-left:.55em;margin-top:2px}
+
+.divider{display:block;margin:18px auto 16px;width:min(220px,60%)}
+
+.lead{font-size:clamp(.95rem,2.8vw,1.08rem);line-height:1.75;color:#dcf3f6;max-width:44ch;margin:0 auto 22px;font-weight:500}
+
+.rows{display:grid;gap:12px;margin-bottom:22px}
+.row{
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  font-size:clamp(.95rem,2.8vw,1.1rem);font-weight:600;color:#f2fbfd;
+}
+.row .ic{font-size:1.15em}
+.row .lbl{color:var(--aqua);font-weight:700;letter-spacing:.06em}
+
+.val{color:#f2fbfd;font-weight:600}
+
+/* ---- Aksiyon butonları ---- */
+.aksiyon{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  margin:20px 0 4px;
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--govde);font-size:clamp(.9rem,2.6vw,1rem);font-weight:700;
+  padding:14px 24px;border-radius:999px;cursor:pointer;text-decoration:none;
+  border:1px solid transparent;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn:active{transform:translateY(1px)}
+@media (hover:hover){.btn:hover{transform:translateY(-3px)}}
+.btn.dolu{
+  background:linear-gradient(120deg,var(--aqua),#7be6d6);
+  color:#053a44;box-shadow:0 12px 28px rgba(142,233,226,.28);
+}
+@media (hover:hover){.btn.dolu:hover{box-shadow:0 18px 36px rgba(142,233,226,.4)}}
+.btn.bos{
+  background:rgba(234,251,255,.06);color:var(--ink);
+  border-color:rgba(190,240,255,.32);
+}
+@media (hover:hover){.btn.bos:hover{background:rgba(234,251,255,.12)}}
+@media (max-width:420px){.btn{flex:1 1 100%}}
+
+.parents{margin:6px 0 4px;font-size:clamp(.92rem,2.7vw,1.05rem);color:#cfeef2}
+.parents b{font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(1.5rem,4.6vw,1.9rem);color:var(--pearl);letter-spacing:.02em}
+.lcv{margin-top:14px;font-size:clamp(.85rem,2.5vw,.98rem);color:#bfe3e9;font-weight:600}
+.hint{margin-top:22px;font-size:clamp(.72rem,2.2vw,.82rem);color:rgba(214,244,248,.65);font-weight:500;letter-spacing:.03em}
+
+#sceneB footer{position:relative;z-index:2;text-align:center;padding:0 16px calc(18px + env(safe-area-inset-bottom));font-size:.72rem;color:rgba(214,244,248,.45);letter-spacing:.05em}
+
+/* ============================================================
+   BREAKPOINT SETİ  (xs320 · sm480 · md640 · lg768 · xl1024 · 2xl1280 · 3xl1536 · 4xl1920)
+   ============================================================ */
+
+/* xs — çok küçük telefon (~320px) */
+@media (max-width:359px){
+  .fisilti{letter-spacing:.26em}
+  .istiridye{width:min(280px,82vw)}
+  .card{padding:24px 15px 22px;border-radius:22px}
+  .name{font-size:clamp(2.6rem,13vw,3.4rem)}
+  .one{font-size:clamp(4.6rem,22vw,6rem)}
+}
+
+/* sm — geniş telefon (≤480px) */
+@media (max-width:480px){
+  .fish.f2,.jelly.j2{display:none}
+  .card{border-radius:24px}
+  .istiridye{width:min(320px,80vw)}
+}
+
+/* md — küçük tablet (≤640px) */
+@media (max-width:640px){
+  .yuzucu{width:min(240px,60vw)}
+}
+
+/* xl ve üzeri — laptop / masaüstü: kartı ferah tut */
+@media (min-width:1024px){
+  .card{max-width:620px}
+}
+/* 2xl (≥1280) ve 3xl (≥1536) */
+@media (min-width:1280px){
+  .card{max-width:640px}
+  .card{padding:56px 52px 44px}
+}
+/* 4xl — ultra geniş (≥1920): ışık/parıltı fazla yayılmasın */
+@media (min-width:1920px){
+  .card{max-width:680px}
+}
+
+/* yatay / kısa ekran (küçük telefon manzara) */
+@media (max-height:520px) and (orientation:landscape){
+  .sahne{min-height:100svh;padding:14px}
+  .istiridye{width:min(210px,42vh)}
+  #sceneB main{padding:16px}
+}
+
+/* ---------- AZ HAREKET TERCİHİ ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.2s !important;
+  }
+  .kabarcik,.yuzucu,.balik,.denizanasi,.plankton,.yengec,.kivilcim,.halka,
+  .fish,.jelly,.bubble,.burst{display:none}
+  .rays,.glowspot,.card,.name,.tail .fluke,.tail .drop,.one .spark{animation:none !important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     SAHNE A — İSTİRİDYE / AÇILIŞ
+     ============================================================ -->
+<div id="sceneA">
+
+  <div class="deniz" aria-hidden="true"></div>
+
+  <div class="kat" data-par="-16" style="z-index:1" aria-hidden="true"><div class="isik"></div></div>
+  <div class="kat" data-par="11" style="z-index:1" aria-hidden="true"><div class="isik2"></div></div>
+
+  <!-- Denizanaları -->
+  <div class="denizanasi da1" aria-hidden="true">
+    <div class="salinim">
+      <svg viewBox="0 0 64 78" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+        <path fill="currentColor" stroke="none" d="M8 30 C8 14 19 5 32 5 C45 5 56 14 56 30 C48 26 40 28 32 28 C24 28 16 26 8 30Z"/>
+        <path class="dokunac" d="M15 32 C12 42 19 50 14 62"/>
+        <path class="dokunac" d="M26 34 C24 46 30 54 26 68"/>
+        <path class="dokunac" d="M38 34 C40 46 34 54 39 68"/>
+        <path class="dokunac" d="M49 32 C52 42 45 50 50 62"/>
+      </svg>
+    </div>
+  </div>
+  <div class="denizanasi da2" aria-hidden="true">
+    <div class="salinim">
+      <svg viewBox="0 0 64 78" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+        <path fill="currentColor" stroke="none" d="M8 30 C8 14 19 5 32 5 C45 5 56 14 56 30 C48 26 40 28 32 28 C24 28 16 26 8 30Z"/>
+        <path class="dokunac" d="M15 32 C12 42 19 50 14 62"/>
+        <path class="dokunac" d="M26 34 C24 46 30 54 26 68"/>
+        <path class="dokunac" d="M38 34 C40 46 34 54 39 68"/>
+        <path class="dokunac" d="M49 32 C52 42 45 50 50 62"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Deniz kızı -->
+  <div class="kat" data-par="7" style="z-index:2" aria-hidden="true">
+    <div class="yuzucu" id="yuzucu">
+      <svg viewBox="0 0 300 170" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <g class="kuyruk">
+          <path d="M96 92 C70 104 44 108 20 96 C34 112 34 132 22 150 C48 138 74 130 98 134"/>
+          <path d="M92 100 C76 106 60 110 44 106"/>
+          <path d="M90 112 C74 118 58 126 46 138"/>
+        </g>
+        <path d="M236 62 C230 84 208 100 178 106 C152 111 122 106 96 92"/>
+        <path d="M244 78 C238 102 214 120 184 126 C152 132 120 126 98 134"/>
+        <path d="M232 84 C222 100 206 108 190 110"/>
+        <circle cx="248" cy="44" r="15"/>
+        <path d="M236 34 C214 20 188 22 172 36 C190 32 210 34 226 44"/>
+        <path class="sac" d="M240 28 C216 8 184 8 164 22"/>
+        <path class="sac" d="M262 54 C276 66 282 84 278 100"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Deniz tabanı -->
+  <div class="kat" data-par="10" style="z-index:1" aria-hidden="true">
+    <div class="zemin">
+      <svg viewBox="0 0 1200 300" preserveAspectRatio="none">
+        <g fill="currentColor" opacity=".85">
+          <path class="yosun" d="M120 300 C100 220 140 180 118 110 C112 88 128 70 140 60 C136 96 150 130 146 172 C142 214 156 258 152 300Z"/>
+          <path class="yosun" d="M300 300 C286 236 318 196 296 140 C288 118 304 96 320 86 C312 124 328 156 322 196 C316 238 330 268 326 300Z"/>
+          <path class="yosun" d="M900 300 C884 228 916 190 894 126 C886 102 902 82 918 72 C910 112 926 142 920 186 C914 232 928 264 924 300Z"/>
+          <path class="yosun" d="M1080 300 C1064 244 1092 210 1074 158 C1068 138 1082 120 1096 112 C1088 146 1102 172 1098 210 C1094 250 1106 274 1102 300Z"/>
+        </g>
+        <g stroke="#0d4166" stroke-width="8" stroke-linecap="round" fill="none">
+          <path class="mercanDal" d="M238 300 C236 268 244 248 240 228 M240 258 C226 250 218 238 216 222 M240 250 C254 242 262 230 264 214 M227 240 C219 234 215 224 214 214 M253 236 C261 230 265 220 266 210"/>
+          <path class="mercanDal m2" d="M760 300 C758 272 766 254 762 236 M762 264 C748 257 741 246 739 232 M762 256 C776 249 783 238 785 224 M750 248 C743 242 739 233 738 224"/>
+        </g>
+        <path class="denizyildizi" d="M540 234 L546 250 L563 251 L550 261 L555 277 L540 268 L525 277 L530 261 L517 251 L534 250 Z" fill="#0c3f63" stroke="#0c3f63" stroke-width="7" stroke-linejoin="round"/>
+        <path fill="currentColor" d="M0 300 L0 210 C160 170 300 226 470 208 C640 190 760 148 930 176 C1050 196 1130 232 1200 218 L1200 300Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Yengeç -->
+  <div class="yengec" aria-hidden="true">
+    <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+      <g class="yengecGovde">
+        <path d="M27 17 L25 11 M37 17 L39 11"/>
+        <circle cx="25" cy="9" r="2.4" fill="currentColor" stroke="none"/>
+        <circle cx="39" cy="9" r="2.4" fill="currentColor" stroke="none"/>
+        <path d="M20 21 C13 17 9 12 11 6 M11 6 L15 10 M11 6 L7 9"/>
+        <path d="M44 21 C51 17 55 12 53 6 M53 6 L49 10 M53 6 L57 9"/>
+        <ellipse cx="32" cy="25" rx="13" ry="9" fill="currentColor" stroke="none"/>
+      </g>
+      <g><path class="bacak" d="M21 30 L11 37"/><path class="bacak" d="M23 33 L14 41"/><path class="bacak" d="M26 34 L19 43"/></g>
+      <g><path class="bacak" d="M43 30 L53 37"/><path class="bacak" d="M41 33 L50 41"/><path class="bacak" d="M38 34 L45 43"/></g>
+    </svg>
+  </div>
+
+  <main class="sahne">
+    <div class="kapak" id="kapak">
+      <p class="fisilti">Sualtından bir davet var</p>
+
+      <button class="istiridye" id="istiridye" aria-label="Kabuğu aç ve davetiyeyi gör" aria-expanded="false">
+        <svg viewBox="0 0 300 280">
+          <defs>
+            <linearGradient id="kabukG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffe9f2"/>
+              <stop offset="45%" stop-color="#f6c9dd"/>
+              <stop offset="100%" stop-color="#c78fb3"/>
+            </linearGradient>
+            <linearGradient id="kabukG2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e5aec8"/>
+              <stop offset="100%" stop-color="#a86f95"/>
+            </linearGradient>
+            <radialGradient id="inciG" cx="34%" cy="30%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="42%" stop-color="#fdf3ef"/>
+              <stop offset="78%" stop-color="#ffd7e8"/>
+              <stop offset="100%" stop-color="#b9e8e2"/>
+            </radialGradient>
+          </defs>
+          <g class="inci">
+            <circle cx="150" cy="192" r="34" fill="url(#inciG)"/>
+            <circle cx="139" cy="181" r="9" fill="#fff" opacity=".85"/>
+          </g>
+          <g class="alt-kabuk">
+            <path fill="url(#kabukG2)" d="M150 232 C86 232 34 214 26 200 C60 236 96 258 150 258 C204 258 240 236 274 200 C266 214 214 232 150 232Z"/>
+            <path fill="url(#kabukG)" d="M26 200 C26 176 78 158 150 158 C222 158 274 176 274 200 C240 220 204 230 150 230 C96 230 60 220 26 200Z"/>
+          </g>
+          <g class="ust-kabuk">
+            <path fill="url(#kabukG)" d="M150 34 C222 34 282 96 288 190 C266 178 238 200 214 186 C192 174 174 198 150 198 C126 198 108 174 86 186 C62 200 34 178 12 190 C18 96 78 34 150 34Z"/>
+            <g stroke="#ffffff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round" fill="none">
+              <path d="M150 44 L150 190"/>
+              <path d="M124 46 L104 186"/>
+              <path d="M176 46 L196 186"/>
+              <path d="M100 56 L64 182"/>
+              <path d="M200 56 L236 182"/>
+              <path d="M76 74 L34 178"/>
+              <path d="M224 74 L266 178"/>
+            </g>
+          </g>
+        </svg>
+      </button>
+
+      <p class="dokun">Kabuğu açar mısın?<small>Dokun</small></p>
+    </div>
+  </main>
+
+</div><!-- /#sceneA -->
+
+
+<!-- ============================================================
+     SAHNE B — DAVETİYE KARTI
+     ============================================================ -->
+<div id="sceneB">
+
+  <div class="scene" aria-hidden="true">
+    <div class="rays" id="rays"></div>
+    <div class="glowspot a"></div>
+    <div class="glowspot b"></div>
+
+    <div class="fish f1"><div class="bob"><svg viewBox="0 0 70 34" fill="none"><path d="M47 17 L66 5 L61 17 L66 29 Z" fill="currentColor" opacity=".85"/><ellipse cx="26" cy="17" rx="24" ry="12" fill="currentColor"/><circle cx="11" cy="14" r="2.6" fill="#04222e"/><path d="M20 8 q8 -5 16 0" stroke="rgba(255,255,255,.35)" stroke-width="2"/></svg></div></div>
+    <div class="fish f2"><div class="bob"><svg viewBox="0 0 70 34" fill="none"><path d="M47 17 L66 5 L61 17 L66 29 Z" fill="currentColor" opacity=".85"/><ellipse cx="26" cy="17" rx="24" ry="12" fill="currentColor"/><circle cx="11" cy="14" r="2.6" fill="#04222e"/></svg></div></div>
+    <div class="fish f3"><div class="bob"><svg viewBox="0 0 70 34" fill="none"><path d="M47 17 L66 5 L61 17 L66 29 Z" fill="currentColor" opacity=".85"/><ellipse cx="26" cy="17" rx="24" ry="12" fill="currentColor"/><circle cx="11" cy="14" r="2.6" fill="#04222e"/><path d="M20 8 q8 -5 16 0" stroke="rgba(255,255,255,.35)" stroke-width="2"/></svg></div></div>
+    <div class="fish f4"><div class="bob"><svg viewBox="0 0 70 34" fill="none"><path d="M47 17 L66 5 L61 17 L66 29 Z" fill="currentColor" opacity=".85"/><ellipse cx="26" cy="17" rx="24" ry="12" fill="currentColor"/><circle cx="11" cy="14" r="2.6" fill="#04222e"/></svg></div></div>
+
+    <div class="jelly j1"><svg viewBox="0 0 70 100" fill="none">
+      <g class="jbody">
+        <path d="M8 40 A27 27 0 0 1 62 40 Q58 50 50 46 Q44 54 35 48 Q26 54 20 46 Q12 50 8 40 Z" fill="rgba(190,160,255,.32)" stroke="rgba(224,204,255,.6)" stroke-width="1.6"/>
+        <circle cx="26" cy="31" r="3" fill="#fff" opacity=".7"/><circle cx="41" cy="29" r="2.2" fill="#fff" opacity=".55"/>
+      </g>
+      <g class="tent" stroke="rgba(204,184,255,.55)" stroke-width="2.6" stroke-linecap="round">
+        <path d="M20 49 q5 12 -3 22 q-7 12 2 22"/>
+        <path d="M33 51 q-5 12 3 22 q6 12 -2 20"/>
+        <path d="M46 49 q5 12 -2 22 q-6 12 2 22"/>
+      </g>
+    </svg></div>
+    <div class="jelly j2"><svg viewBox="0 0 70 100" fill="none">
+      <g class="jbody">
+        <path d="M8 40 A27 27 0 0 1 62 40 Q58 50 50 46 Q44 54 35 48 Q26 54 20 46 Q12 50 8 40 Z" fill="rgba(142,233,226,.22)" stroke="rgba(190,250,244,.5)" stroke-width="1.6"/>
+        <circle cx="26" cy="31" r="3" fill="#fff" opacity=".6"/>
+      </g>
+      <g class="tent" stroke="rgba(170,240,235,.5)" stroke-width="2.4" stroke-linecap="round">
+        <path d="M22 49 q5 12 -3 22 q-6 10 2 20"/>
+        <path d="M35 51 q-5 12 3 22 q5 10 -2 18"/>
+        <path d="M48 49 q5 12 -2 22 q-5 10 2 20"/>
+      </g>
+    </svg></div>
+  </div>
+
+  <div id="bubbles" aria-hidden="true"></div>
+
+  <main>
+    <div class="card-wrap" id="cardWrap">
+      <section class="card" tabindex="-1">
+        <p class="eyebrow">✦ Okyanusun En Tatlı Haberi ✦</p>
+
+        <svg class="tail" viewBox="0 0 180 190" aria-hidden="true">
+          <defs>
+            <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#a5f4e8"/>
+              <stop offset=".55" stop-color="#5cc9c4"/>
+              <stop offset="1" stop-color="#8a7fdc"/>
+            </linearGradient>
+            <pattern id="scales" width="22" height="16" patternUnits="userSpaceOnUse">
+              <circle cx="11" cy="16" r="10" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="2"/>
+              <circle cx="0" cy="8" r="10" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="2"/>
+              <circle cx="22" cy="8" r="10" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="2"/>
+            </pattern>
+          </defs>
+          <g class="fluke">
+            <rect x="79" y="128" width="22" height="34" rx="10" fill="url(#tg)"/>
+            <path d="M90 150 C68 146 46 132 32 106 C27 94 25 76 28 58 C29 52 33 50 36 55 C48 74 60 88 76 94 C83 96 87 103 88 112 Q90 117 92 112 C93 103 97 96 104 94 C120 88 132 74 144 55 C147 50 151 52 152 58 C155 76 153 94 148 106 C134 132 112 146 90 150 Z" fill="url(#tg)" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+            <path d="M90 150 C68 146 46 132 32 106 C27 94 25 76 28 58 C29 52 33 50 36 55 C48 74 60 88 76 94 C83 96 87 103 88 112 Q90 117 92 112 C93 103 97 96 104 94 C120 88 132 74 144 55 C147 50 151 52 152 58 C155 76 153 94 148 106 C134 132 112 146 90 150 Z" fill="url(#scales)" opacity=".55"/>
+          </g>
+          <ellipse cx="90" cy="168" rx="64" ry="9" fill="none" stroke="rgba(142,233,226,.55)" stroke-width="2.5"/>
+          <ellipse cx="90" cy="168" rx="38" ry="5.5" fill="none" stroke="rgba(142,233,226,.35)" stroke-width="2"/>
+          <circle class="drop"   cx="52"  cy="146" r="3.2" fill="rgba(255,255,255,.8)"/>
+          <circle class="drop d2" cx="128" cy="140" r="2.6" fill="rgba(255,255,255,.75)"/>
+          <circle class="drop d3" cx="90"  cy="126" r="2.2" fill="rgba(255,255,255,.7)"/>
+        </svg>
+
+        <p class="kicker">Küçük deniz kızımız</p>
+        <h1 class="name">Defne Derin</h1>
+        <p class="surname">Durmuş</p>
+
+        <div class="age">
+          <span class="one">1<span class="spark s1">✦</span><span class="spark s2">✦</span></span>
+          <span class="age-label">Yaşında</span>
+        </div>
+
+        <svg class="divider" viewBox="0 0 220 20" aria-hidden="true">
+          <path d="M2 12 Q 20 2 38 12 T 74 12 T 110 12 T 146 12 T 182 12 T 218 12" fill="none" stroke="rgba(190,240,255,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <p class="lead">Minik kuyruğuyla ilk yaşına doğru yüzüyor! Bu masalsı günde dalgalarımıza katılmanızdan büyük mutluluk duyarız.</p>
+
+        <div class="rows">
+          <div class="row"><span class="ic">📅</span><span class="lbl">Tarih</span><span class="val">10 Ekim 2026, Cumartesi</span></div>
+          <div class="row"><span class="ic">🕑</span><span class="lbl">Saat</span><span class="val">16:00 – 18:00</span></div>
+          <div class="row"><span class="ic">📍</span><span class="lbl">Yer</span><span class="val">Vefa 2 Konutları · Hadımköy, Arnavutköy/İstanbul</span></div>
+        </div>
+
+        <p class="parents">Sevgiyle bekliyoruz,<br><b>Selin &amp; Enes Durmuş</b></p>
+        <p class="lcv">💌 LCV · <span class="val">0 538 367 82 76</span></p>
+
+        <div class="aksiyon">
+          <a class="btn dolu" id="btnGel" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 L9 17 L4 12"/></svg>
+            Geliyoruz
+          </a>
+          <button class="btn bos" id="btnTakvim" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M7 3v3M17 3v3M3 9h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>
+            Takvime ekle
+          </button>
+          <a class="btn bos" id="btnYol" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 L10.5 10.5 L8.5 15.5 L13.5 13.5 Z" fill="currentColor" stroke="none"/></svg>
+            Yol tarifi
+          </a>
+        </div>
+
+        <p class="hint">🫧 Ekrana dokun, baloncuklar yükselsin</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>Derin Okyanus Masalı · Defne Derin'in 1. Yaş Davetiyesi</footer>
+
+</div><!-- /#sceneB -->
+
+<script>
+/* ============================================================
+   ORTAK DURUM
+   ============================================================ */
+const azHareket = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const inceIsaretci = matchMedia("(pointer: fine)").matches;
+let aktif = "A";                 // hangi sahne etkin
+
+const sceneA = document.getElementById("sceneA");
+const sceneB = document.getElementById("sceneB");
+
+/* ============================================================
+   DAVET AYARLARI — BUTONLAR İÇİN. SADECE BURAYI DOLDUR.
+   ============================================================ */
+const DAVET = {
+  // WhatsApp LCV — ülke koduyla, boşluksuz (90 ile başlar):
+  telefon: "905383678276",
+  mesaj:   "Merhaba! Defne Derin'in 1. yaş kutlamasına geliyoruz.",
+
+  // Etkinlik (takvim + geri sayım için) — Yıl-Ay-GünTSaat:Dakika
+  baslangic: "2026-10-10T16:00:00",
+  bitis:     "2026-10-10T18:00:00",
+  baslik:    "Defne Derin · 1. Yaş Doğum Günü",
+
+  // Mekân — "Yol tarifi" ve takvim konumu için:
+  mekan: "Vefa 2 Konutları",
+  adres: "Hadımköy Mah. Adnan Menderes Cad., Arnavutköy / İstanbul"
+};
+/* ============================================================ */
+
+/* ---- Butonları bağla ---- */
+const btnGel    = document.getElementById("btnGel");
+const btnTakvim = document.getElementById("btnTakvim");
+const btnYol    = document.getElementById("btnYol");
+
+btnGel.href = "https://wa.me/" + DAVET.telefon +
+  "?text=" + encodeURIComponent(DAVET.mesaj);
+
+btnYol.href = "https://www.google.com/maps/dir/?api=1&destination=" +
+  encodeURIComponent((DAVET.mekan + " " + DAVET.adres).trim());
+
+btnTakvim.addEventListener("click", () => {
+  const bas = new Date(DAVET.baslangic);
+  if (isNaN(bas)) return;
+  const bit = isNaN(new Date(DAVET.bitis)) ? new Date(bas.getTime() + 3 * 3600000)
+                                           : new Date(DAVET.bitis);
+  const bicim = d => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const kac = s => String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,");
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Davetiye//TR","BEGIN:VEVENT",
+    "UID:" + bas.getTime() + "@defnederin",
+    "DTSTAMP:" + bicim(bas),
+    "DTSTART:" + bicim(bas),
+    "DTEND:" + bicim(bit),
+    "SUMMARY:" + kac(DAVET.baslik),
+    "LOCATION:" + kac(DAVET.mekan + ", " + DAVET.adres),
+    "DESCRIPTION:" + kac("Deniz kızı temalı doğum günü kutlaması — Selin & Enes Durmuş"),
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "defne-derin-dogum-gunu.ics";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+});
+
+/* ============================================================
+   SAHNE A — KABARCIKLAR / OKYANUS CANLILIĞI
+   ============================================================ */
+function kabarcik(x, y, boyutMax){
+  const b = document.createElement("div");
+  const boy = 6 + Math.random() * (boyutMax || 22);
+  b.className = "kabarcik";
+  if (Math.random() < .3) b.classList.add("titrek");
+  if (Math.random() < .07) b.classList.add("incik");
+  b.style.width = b.style.height = boy + "px";
+  b.style.left = (x ?? Math.random() * window.innerWidth) + "px";
+  if (y != null) b.style.bottom = (window.innerHeight - y) + "px";
+  b.style.setProperty("--kay", (Math.random() * 90 - 45) + "px");
+  b.style.setProperty("--sure", (7 + Math.random() * 9) + "s");
+  b.addEventListener("animationend", ev => { if (ev.animationName === "yuksel") b.remove(); });
+  document.body.appendChild(b);
+}
+
+if (!azHareket){
+  for (let i = 0; i < 16; i++) setTimeout(kabarcik, i * 420);
+  setInterval(() => {
+    if (document.hidden || aktif !== "A") return;
+    if (document.querySelectorAll(".kabarcik").length < 34) kabarcik();
+  }, 900);
+}
+
+/* Plankton tozu */
+if (!azHareket){
+  for (let i = 0; i < 22; i++){
+    const p = document.createElement("div");
+    p.className = "plankton";
+    const boy = 2 + Math.random() * 1.8;
+    p.style.width = p.style.height = boy + "px";
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.top = Math.random() * 78 + "vh";
+    p.style.setProperty("--sure", (9 + Math.random() * 8) + "s");
+    p.style.setProperty("--gec", (-Math.random() * 12) + "s");
+    sceneA.appendChild(p);
+  }
+}
+
+/* Balık sürüsü */
+const balikSVG = `
+<svg viewBox="0 0 64 32" fill="currentColor">
+  <path d="M4 16 C14 5 36 4 47 13 C36 22 14 27 4 16 Z"/>
+  <path class="yuzgec" d="M46 16 L60 6 L56 16 L60 26 Z"/>
+  <circle cx="15" cy="13" r="2.2" fill="#041c33"/>
+</svg>`;
+function balikSal(){
+  if (document.hidden || aktif !== "A" || document.querySelectorAll(".balik").length >= 5) return;
+  const f = document.createElement("div");
+  f.className = "balik";
+  f.innerHTML = balikSVG;
+  const yon = Math.random() < .5 ? 1 : -1;
+  const gen = 26 + Math.random() * 30;
+  f.style.width = gen + "px";
+  f.style.top = (12 + Math.random() * 56) + "vh";
+  f.style.left = "0";
+  const vw = window.innerWidth;
+  const x0 = yon === 1 ? -0.14 * vw : 1.14 * vw;
+  const x1 = yon === 1 ? 1.14 * vw : -0.14 * vw;
+  const sure = 15000 + Math.random() * 13000;
+  const sal = 8 + Math.random() * 12;
+  const anim = f.animate([
+    { transform: `translate(${x0}px, 0px) scaleX(${yon})` },
+    { transform: `translate(${x0 + (x1 - x0) * .25}px, ${-sal}px) scaleX(${yon})` },
+    { transform: `translate(${x0 + (x1 - x0) * .5}px, ${sal * .6}px) scaleX(${yon})` },
+    { transform: `translate(${x0 + (x1 - x0) * .75}px, ${-sal * .7}px) scaleX(${yon})` },
+    { transform: `translate(${x1}px, 0px) scaleX(${yon})` }
+  ], { duration: sure, easing: "linear" });
+  anim.onfinish = () => f.remove();
+  document.body.appendChild(f);
+}
+if (!azHareket){ setTimeout(balikSal, 1200); setInterval(balikSal, 5200); }
+
+/* Deniz kızının kabarcık izi */
+const yuzucuEl = document.getElementById("yuzucu");
+if (!azHareket && yuzucuEl){
+  setInterval(() => {
+    if (document.hidden || aktif !== "A") return;
+    const r = yuzucuEl.getBoundingClientRect();
+    if (r.right < 0 || r.left > window.innerWidth) return;
+    kabarcik(r.left + r.width * .1 + Math.random() * 16, r.top + r.height * .55 + Math.random() * 14, 9);
+  }, 620);
+}
+
+/* Paralaks (Sahne A katmanları) */
+if (!azHareket && inceIsaretci){
+  const katlar = [...sceneA.querySelectorAll(".kat")];
+  const hedefP = {x:0, y:0}, cur = {x:0, y:0};
+  window.addEventListener("pointermove", e => {
+    hedefP.x = (e.clientX / window.innerWidth - .5) * 2;
+    hedefP.y = (e.clientY / window.innerHeight - .5) * 2;
+  }, {passive:true});
+  (function aktar(){
+    cur.x += (hedefP.x - cur.x) * .05;
+    cur.y += (hedefP.y - cur.y) * .05;
+    for (const k of katlar){
+      const f = parseFloat(k.dataset.par || 0);
+      k.style.transform = `translate3d(${cur.x * f}px, ${cur.y * f * .55}px, 0)`;
+    }
+    requestAnimationFrame(aktar);
+  })();
+}
+
+/* Kıvılcım & halka (inci patlaması) */
+const renkler = ["#fdf3ef", "#ffd28a", "#2fd3c4", "#ffd7e8"];
+function kivilcim(x, y, adet, hiz){
+  for (let i = 0; i < adet; i++){
+    const k = document.createElement("div");
+    k.className = "kivilcim";
+    const boy = 6 + Math.random() * 8;
+    k.style.width = k.style.height = boy + "px";
+    k.style.left = x + "px";
+    k.style.top = y + "px";
+    k.style.color = renkler[Math.floor(Math.random() * renkler.length)];
+    const aci = Math.random() * Math.PI * 2;
+    const mesafe = (hiz || 70) + Math.random() * 80;
+    const anim = k.animate([
+      { transform: "translate(-50%,-50%) scale(1) rotate(0deg)", opacity: 1 },
+      { transform: `translate(calc(-50% + ${Math.cos(aci) * mesafe}px), calc(-50% + ${Math.sin(aci) * mesafe}px)) scale(.15) rotate(200deg)`, opacity: 0 }
+    ], { duration: 750 + Math.random() * 450, easing: "cubic-bezier(.2,.7,.3,1)" });
+    anim.onfinish = () => k.remove();
+    document.body.appendChild(k);
+  }
+}
+function halka(x, y){
+  const h = document.createElement("div");
+  h.className = "halka";
+  h.style.left = x + "px";
+  h.style.top = y + "px";
+  h.addEventListener("animationend", () => h.remove());
+  document.body.appendChild(h);
+}
+
+/* ============================================================
+   KABUĞU AÇ → SAHNE B'yi göster
+   ============================================================ */
+const istiridye = document.getElementById("istiridye");
+const kapak = document.getElementById("kapak");
+let acildi = false;
+
+istiridye.addEventListener("click", () => {
+  if (acildi) return;
+  acildi = true;
+  istiridye.classList.add("acik");
+  istiridye.setAttribute("aria-expanded", "true");
+
+  const r = istiridye.getBoundingClientRect();
+  const cx = r.left + r.width / 2;
+
+  if (!azHareket){
+    for (let i = 0; i < 22; i++){
+      setTimeout(() => kabarcik(cx + (Math.random() * 160 - 80), r.top + r.height * .6, 20), i * 70);
+    }
+    const basY = r.top + r.height * .66;
+    const sonY = r.top + r.height * .1;
+    for (let t = 0; t <= 8; t++){
+      setTimeout(() => {
+        const oran = t / 8;
+        kivilcim(cx + (Math.random() * 26 - 13), basY + (sonY - basY) * oran, 2, 26);
+      }, 180 + t * 95);
+    }
+    setTimeout(() => {
+      kivilcim(cx, sonY, 18, 90);
+      halka(cx, sonY);
+      setTimeout(() => halka(cx, sonY), 160);
+    }, 1120);
+  }
+
+  const bekle = azHareket ? 100 : 1400;
+  setTimeout(() => {
+    // 1) Sahne B'yi A'nın ARKASINDA görünür hale getir (henüz A örtüyor)
+    startB();                       // Sahne B baloncuklarını hazırla
+    aktif = "B";                    // etkileşim artık karta ait
+    sceneB.style.display = "flex";
+    void sceneB.offsetWidth;        // reflow → geçişler tetiklensin
+    sceneB.classList.add("goster"); // kart yumuşakça yükselerek belirir
+
+    // 2) Sahne A'yı yavaşça sönümle → altındaki B kendiliğinden ortaya çıkar (crossfade)
+    requestAnimationFrame(() => {
+      kapak.classList.add("gizle");
+      sceneA.classList.add("gizle");
+    });
+
+    // 3) Geçiş bitince A'yı tamamen kaldır
+    setTimeout(() => {
+      sceneA.style.display = "none";
+      document.querySelector(".card")?.focus?.();
+    }, azHareket ? 120 : 1300);
+  }, bekle);
+});
+
+/* ============================================================
+   SAHNE B — DAVETİYE KARTI ETKİLEŞİMLERİ
+   ============================================================ */
+const bubbleLayer = document.getElementById("bubbles");
+let bStarted = false;
+
+function ambientBubble(){
+  if (document.hidden || aktif !== "B") return;
+  const b = document.createElement("span");
+  b.className = "bubble";
+  const s = 6 + Math.random() * 20;
+  b.style.width = b.style.height = s + "px";
+  b.style.left = Math.random() * 100 + "%";
+  const d = 7 + Math.random() * 7;
+  b.style.animationDuration = d + "s";
+  b.style.setProperty("--drift", (Math.random() * 70 - 35) + "px");
+  bubbleLayer.appendChild(b);
+  setTimeout(() => b.remove(), d * 1000 + 400);
+}
+function startB(){
+  if (bStarted || azHareket) return;
+  bStarted = true;
+  for (let i = 0; i < 10; i++) setTimeout(ambientBubble, i * 500);
+  setInterval(ambientBubble, 900);
+}
+
+/* Dokununca baloncuk patlaması */
+function burstAt(x, y){
+  for (let i = 0; i < 12; i++){
+    const s = document.createElement("span");
+    s.className = "burst";
+    const size = 5 + Math.random() * 13;
+    s.style.width = s.style.height = size + "px";
+    s.style.left = (x - size / 2) + "px";
+    s.style.top  = (y - size / 2) + "px";
+    document.body.appendChild(s);
+    const dx = (Math.random() - .5) * 150;
+    const dy = -(90 + Math.random() * 170);
+    s.animate([
+      {transform:"translate(0,0) scale(.5)", opacity:0},
+      {opacity:.95, offset:.15},
+      {transform:`translate(${dx}px,${dy}px) scale(1.05)`, opacity:0}
+    ], {duration: 1100 + Math.random() * 800, easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish = () => s.remove();
+  }
+}
+
+/* Tek bir global dokunma dinleyicisi — etkin sahneye göre davranır */
+document.addEventListener("pointerdown", e => {
+  if (azHareket) return;
+  if (aktif === "A"){
+    if (e.target.closest("#istiridye")) return;   // kabuğu açarken çift patlama olmasın
+    for (let i = 0; i < 7; i++){
+      setTimeout(() => kabarcik(e.clientX + (Math.random() * 70 - 35), e.clientY, 14), i * 55);
+    }
+  } else {
+    if (e.target.closest(".btn")) return;          // butona basınca patlatma
+    burstAt(e.clientX, e.clientY);
+  }
+});
+
+/* Kartı işaretçiyle hafifçe kaydır (yalnızca ince işaretçi) */
+if (inceIsaretci && !azHareket){
+  const wrap = document.getElementById("cardWrap");
+  const rays = document.getElementById("rays");
+  window.addEventListener("pointermove", e => {
+    if (aktif !== "B") return;
+    const x = e.clientX / innerWidth - .5;
+    const y = e.clientY / innerHeight - .5;
+    wrap.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+    if (rays) rays.style.translate = `${x * -18}px ${y * -10}px`;
+  });
+}
+</script>
+
+</body>
+</html>
